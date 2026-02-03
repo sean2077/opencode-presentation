@@ -86,6 +86,8 @@ layout: two-cols
 - 支持 GPT、Gemini、Claude、国产模型等
 - 支持本地模型部署
 - 无需翻墙即可安装使用
+- 提供许多免费模型，降低上手门槛
+
 
 ### 中国用户友好
 - 无使用障碍
@@ -104,6 +106,11 @@ layout: two-cols
 - 支持深度定制
 - Oh My OpenCode 插件生态
 - 多智能体并行协作
+
+### 交互体验优越
+- **Prompt Queue**：Agent 工作时可随时插入新指令
+- 无需等待当前任务完成即可打断/补充
+- Copilot 等工具目前不支持此功能
 
 ### 社区活跃
 - 开源透明
@@ -160,47 +167,63 @@ Stars on GitHub
 
 # OpenCode vs Cursor 等 AI IDE
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
-<div v-click class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+<div v-click class="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm">
 
 ### Cursor 模式
 
-- 围绕 IDE 运行
-- AI 是"高级助手"
+- 围绕 IDE 运行，AI 是"高级助手"
 - 需关注代码逻辑、项目结构
 - **你在写代码**
 
 </div>
 
-<div v-click class="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+<div v-click class="p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-sm">
 
 ### OpenCode 模式
 
 - 以 AI Agent 为核心
 - 只需描述目标和要求
-- 专注需求、流程、结果检查
 - **AI 在写代码**
 
 </div>
 
 </div>
 
-<div v-click class="mt-8 text-center">
+<div v-click class="mt-4 p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg">
 
-<div class="text-xl">
-  角色转变：从 <span class="text-blue-400">借助 AI 写代码</span> → <span class="text-green-400">指挥 AI 工程师完成产品</span>
+### 🔧 底层架构差异
+
+<div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+
+<div>
+
+**Cursor (依托 VSCode/IDE)**
+- 受 Extension API 沙箱限制
+- 文件/终端操作需通过 API 边界
+- Electron 框架额外内存开销
+- 扩展受限于 IDE 插件体系
+
+</div>
+
+<div>
+
+**OpenCode (依托操作系统)**
+- 直接调用 `grep`/`git`/`ast-grep` 等原生工具
+- 无沙箱限制，可启动任意进程
+- 零中间层，工具调用延迟极低
+- MCP 协议自由扩展任意 CLI 工具
+
 </div>
 
 </div>
 
-<v-click>
-
-<div class="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm">
-  💡 CLI Coding Agent 才是核心，IDE 只是 UI 界面的一种形式
 </div>
 
-</v-click>
+<div v-click class="mt-3 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm text-center">
+  💡 CLI Agent 直接对话操作系统，IDE Agent 需要通过 IDE 这个"中间人"
+</div>
 
 ---
 layout: section
@@ -257,89 +280,123 @@ th {
 
 # 推荐的订阅方案
 
-<div class="grid grid-cols-3 gap-4 mt-6">
+<div class="grid grid-cols-2 gap-3 mt-4">
 
-<div v-click class="p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
+<div v-click class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg">
 
-### GitHub Copilot
+### GitHub Copilot <span class="text-xs text-purple-400">~$10-39/月</span>
 
 <div class="text-sm mt-2 text-gray-400">
 
 - 与 OpenCode 深度集成
-- 支持多种模型切换
-- 订阅价格合理
+- 支持 GPT-4o、Claude Sonnet、Gemini 等
+- 性价比最高的多模型方案
 
 </div>
 
 </div>
 
-<div v-click class="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+<div v-click class="p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
 
-### ChatGPT Plus
+### ChatGPT Plus <span class="text-xs text-green-400">~$20/月</span>
 
 <div class="text-sm mt-2 text-gray-400">
 
-- GPT 系列模型
-- 稳定可靠
-- 适合日常使用
+- GPT 系列模型完整访问
+- o1/o3 推理模型
+- 稳定可靠，适合日常使用
 
 </div>
 
 </div>
 
-<div v-click class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+<div v-click class="p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg">
 
-### 国内大模型套餐
+### Claude Max/Pro <span class="text-xs text-orange-400">~$20-100/月</span>
 
 <div class="text-sm mt-2 text-gray-400">
 
-- 智谱 Coding Plan
-- Minimax Coding Plan
-- Kimi Code Plan
-
- </div>
+- 编程能力最强的模型之一
+- ⚠️ 需要稳定的订阅渠道
+- 有封号风险，谨慎评估
 
 </div>
 
+</div>
+
+<div v-click class="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+
+### 国内大模型套餐 <span class="text-xs text-blue-400">价格友好</span>
+
+<div class="text-sm mt-2 text-gray-400">
+
+- 智谱/Minimax/Kimi Coding Plan
+- 部分支持 API 形式使用订阅额度
+- 无需翻墙，稳定可靠
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-3 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-xs">
+  💡 <strong>推荐组合</strong>：GitHub Copilot（主力多模型） + 国产套餐（备用/简单任务） = 高性价比方案
 </div>
 
 ---
 
 # 不推荐的方案
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="text-sm text-gray-400 mb-2">以下是一些用户可能考虑的替代方案，但存在明显缺陷</div>
 
-<div v-click="1" class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+<div class="grid grid-cols-3 gap-4">
 
-### ❌ CC-Switch 方案
+<div v-click="1" class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-sm">
 
-**风险点：**
+### ❌ Claude Code + CC-Switch
 
-- 只能通过 API key 调用
-- 无法使用订阅套餐
-- 调用频率控制不当成本极高
-- 平台政策风险大
-- 可能导致接口收紧或封禁
+<div class="text-xs text-gray-500 mb-2">让 Claude Code 调用其他模型</div>
+
+- 依赖 Claude Code 官方客户端
+- 本质是"套壳"，受上游政策约束
+- Anthropic 曾封禁此类用法
+- 随时可能失效
+
+<div class="text-xs text-green-400 mt-2">💡 OpenCode 原生支持多模型</div>
 
 </div>
 
-<div v-click="2" class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+<div v-click="2" class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-sm">
 
-### ❌ API 计费方案
+### ❌ API 按量计费
 
-**风险点：**
+<div class="text-xs text-gray-500 mb-2">302.ai、OpenRouter 等平台</div>
 
-- 302.ai、OpenRouter 等第三方平台
 - 对编程深度用户成本过高
 - 无法享受订阅优惠
 - 费用难以控制
+- 重度使用月费可达数百美元
+
+</div>
+
+<div v-click="3" class="p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg text-sm">
+
+### ⚠️ Google AI Studio
+
+<div class="text-xs text-gray-500 mb-2">通过 antigravity-auth 等方式接入</div>
+
+- Gemini 免费额度确实很高
+- 但非官方支持的接入方式
+- 存在封号风险
+- 稳定性无法保证
 
 </div>
 
 </div>
 
-<div v-click="3" class="mt-6 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm text-center">
-  ⚠️ 不推荐普通用户尝试上述方案
+<div v-click="4" class="mt-4 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-xs text-center">
+  ⚠️ 以上方案或成本过高，或存在政策风险，不推荐普通用户尝试
 </div>
 
 ---
@@ -434,7 +491,7 @@ npx oh-my-opencode@latest install
 
 <div class="flex justify-center mt-2">
 
-```mermaid {scale: 0.65}
+```mermaid {scale: 0.6}
 flowchart TB
     subgraph User["👤 用户"]
         Prompt[输入 Prompt]
@@ -473,6 +530,108 @@ flowchart TB
 
 <div class="text-xs text-gray-400 text-center mt-1">
   💡 使用 <code>ultrawork</code> 或 <code>ulw</code> 关键词激活完整多智能体协作
+</div>
+
+---
+
+# 多智能体架构的核心优势
+
+<div class="grid grid-cols-2 gap-4 mt-4">
+
+<div v-click class="p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-sm">
+
+### 🎯 模型各取所长
+
+不同模型擅长不同任务：
+- **Claude Opus** → 复杂规划、整体协调
+- **GPT 5.2 Codex** → 深度调试、架构设计
+- **Gemini 3 Pro** → 前端 UI/UX、视觉设计
+- **Haiku 4.5** → 快速探索、简单任务
+
+</div>
+
+<div v-click class="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm">
+
+### 🧠 上下文保持整洁
+
+主 Agent 委派低级任务给 Subagent：
+- 探索代码 → Explore Agent
+- 查阅文档 → Librarian Agent
+- **主 Agent 专注整体任务编排**
+- **节省 70%+ Token 消耗**
+
+</div>
+
+<div v-click class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg text-sm">
+
+### ⚡ 并行处理加速
+
+多个 Agent 同时工作：
+- 前端后端并行开发
+- 代码搜索与文档查阅同步
+- **构建速度提升 2.5x**
+- 后台任务不阻塞主流程
+
+</div>
+
+<div v-click class="p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-sm">
+
+### 💰 成本智能优化
+
+分级调用策略：
+- **FREE**: grep、LSP、AST 工具优先
+- **CHEAP**: Explore、Librarian 高频使用
+- **EXPENSIVE**: Oracle 仅复杂问题调用
+- 自动选择性价比最优模型
+
+</div>
+
+</div>
+
+---
+
+# 多智能体协作示例
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div v-click class="text-sm">
+
+### 🐛 Bug 修复场景
+
+```text {lines:false}
+用户: "生产环境报 500 错误"
+         ↓
+1️⃣ Explore → 快速定位相关代码
+2️⃣ Oracle  → 深度分析根本原因  
+3️⃣ Librarian → 查阅框架文档
+4️⃣ Sisyphus → 协调修复并验证
+         ↓
+✅ 10 分钟内定位修复
+```
+
+</div>
+
+<div v-click class="text-sm">
+
+### 🚀 新功能开发场景
+
+```text {lines:false}
+用户: "添加 Stripe 支付功能"
+         ↓
+1️⃣ Prometheus → 需求拆解规划
+2️⃣ Librarian  → 并行查 Stripe 文档
+3️⃣ Hephaestus → 端到端自主实现
+4️⃣ Momus → 方案完整性审查
+         ↓
+✅ 从规划到实现一站式完成
+```
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg text-sm text-center">
+  <strong>核心理念</strong>：你不再是独自编码，而是在<span class="text-green-400">管理一支 AI 开发团队</span>
 </div>
 
 ---
