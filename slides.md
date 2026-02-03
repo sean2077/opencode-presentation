@@ -35,12 +35,59 @@ fonts:
 </div>
 
 <!--
-欢迎大家参加本次培训，今天我们将深入了解 OpenCode 这个强大的 AI 编程助手工具。
--->
+ 欢迎大家参加本次培训，今天我们将深入了解 OpenCode 这个强大的 AI 编程助手工具。
+ -->
+
+---
+layout: center
+class: text-center
+---
+
+# 议程
+
+<v-clicks>
+
+<div class="agenda-item">
+  <div class="agenda-part">第一部分</div>
+  <div class="agenda-title">为什么需要使用 OpenCode？</div>
+</div>
+
+<div class="agenda-item">
+  <div class="agenda-part">第二部分</div>
+  <div class="agenda-title">OpenCode 模型配置方案</div>
+</div>
+
+<div class="agenda-item">
+  <div class="agenda-part">第三部分</div>
+  <div class="agenda-title">OpenCode 实战</div>
+</div>
+
+</v-clicks>
+
+<style>
+.agenda-item {
+  margin-bottom: 2rem;
+}
+.agenda-part {
+  font-size: 1rem;
+  color: #4ade80;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.agenda-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+</style>
 
 ---
 layout: section
+transition: fade
 ---
+
+<div v-motion :initial="{scale:0.5,opacity:0}" :enter="{scale:1,opacity:1}">
+  <carbon:warning-alt class="text-8xl text-orange-400 mb-4" />
+</div>
 
 # 第一部分
 
@@ -48,6 +95,7 @@ layout: section
 
 ---
 layout: quote
+transition: fade
 ---
 
 # "不可能把未来押给一家随时可能封号的公司"
@@ -58,7 +106,7 @@ layout: quote
 
 <v-clicks>
 
-- **封禁风险**：存在封禁中国用户的问题
+- **<span v-mark.underline.red>封禁风险</span>**：存在封禁中国用户的问题
 - **排斥竞争**：切断第三方调用权限、封禁 OpenCode 等竞争工具用户
 - **模型绑定**：与 Claude 模型强绑定，无法稳定使用其他 AI 模型（GPT、Gemini 等）
 - **服务不稳定**：账号随时可能被封禁，影响工作连续性
@@ -82,7 +130,7 @@ layout: two-cols
 <v-clicks>
 
 ### 开源且支持多模型
-- 可接入 **75+** 个 LLM 提供商
+- 可接入 **<span v-mark.highlight="{color:'#4ade80'}">75+</span>** 个 LLM 提供商
 - 支持 GPT、Gemini、Claude、国产模型等
 - 支持本地模型部署
 - 无需翻墙即可安装使用
@@ -129,6 +177,7 @@ h3 {
 ---
 layout: center
 class: text-center
+transition: slide-up
 ---
 
 # OpenCode vs Claude Code
@@ -138,8 +187,9 @@ class: text-center
 <div class="p-6 bg-green-500/10 border border-green-500/30 rounded-lg">
 
 ### OpenCode
+<div class="text-xs text-green-400/70 -mt-1 mb-2">首版发布 2025.06 · 后起之秀</div>
 
-<div class="text-5xl font-bold text-green-400 my-4">95.2k</div>
+<div class="text-5xl font-bold text-green-400 my-4"><span v-mark.circle="1">95.2k</span></div>
 
 Stars on GitHub
 
@@ -150,8 +200,9 @@ Stars on GitHub
 <div class="p-6 bg-gray-500/10 border border-gray-500/30 rounded-lg">
 
 ### Claude Code
+<div class="text-xs text-gray-500 -mt-1 mb-2">首版发布 2025.02</div>
 
-<div class="text-5xl font-bold text-gray-400 my-4">63.2k</div>
+<div class="text-5xl font-bold text-gray-400 my-4"><span v-mark.circle="2">63.2k</span></div>
 
 Stars on GitHub
 
@@ -163,6 +214,8 @@ Stars on GitHub
 
 <div class="mt-6 text-sm text-gray-500">截止 2025年2月</div>
 
+---
+transition: slide-up
 ---
 
 # OpenCode vs Cursor 等 AI IDE
@@ -227,7 +280,12 @@ Stars on GitHub
 
 ---
 layout: section
+transition: fade
 ---
+
+<div v-motion :initial="{scale:0.5,opacity:0}" :enter="{scale:1,opacity:1}">
+  <carbon:settings class="text-8xl text-blue-400 mb-4" />
+</div>
 
 # 第二部分
 
@@ -265,6 +323,10 @@ layout: section
 
 </div>
 
+</div>
+
+<div v-click class="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-sm">
+  ⚠️ <strong>注意</strong>：没有永恒的 SOTA，模型迭代速度极快。国产模型正在快速追赶，建议持续关注最新动态，根据实际效果灵活调整。
 </div>
 
 <style>
@@ -401,7 +463,12 @@ th {
 
 ---
 layout: section
+transition: fade
 ---
+
+<div v-motion :initial="{scale:0.5,opacity:0}" :enter="{scale:1,opacity:1}">
+  <carbon:code class="text-8xl text-green-400 mb-4" />
+</div>
 
 # 第三部分
 
@@ -678,7 +745,6 @@ flowchart TB
 <v-clicks>
 
 - **Playwright MCP**：浏览器自动化
-- **Git MCP**：Git 操作增强
 - **Context7**：文档查询服务
 
 </v-clicks>
@@ -694,7 +760,7 @@ flowchart TB
 | 快捷键          | 功能说明                                                  |
 | --------------- | --------------------------------------------------------- |
 | `Ctrl + X, L`   | 切换会话（多会话处理，如同时开发前后端）                  |
-| `Ctrl + T`      | 切换模型 Variant（Thinking 模式、GPT 的 low/medium/high） |
+| `Ctrl + T`      | 切换模型 Variant（Thinking 模式、GPT 的 low/medium/high/xhigh） |
 | `Ctrl + X, M`   | 切换模型                                                  |
 | `Ctrl + P`      | 打开命令面板                                              |
 | `Ctrl + X, ←/→` | 查看 Subagent                                             |
@@ -724,19 +790,8 @@ td:first-child {
 </style>
 
 ---
-layout: section
----
-
-# 第四部分
-
-## 实战演示
-
----
-layout: center
----
 
 # Demo Time
-
 <div class="text-xl text-gray-400 mt-4">
   现场演示 OpenCode 的实际使用
 </div>
@@ -783,6 +838,7 @@ layout: center
 
 ---
 layout: section
+transition: fade-out
 ---
 
 # 结语
@@ -795,19 +851,55 @@ layout: two-cols
 
 <v-clicks>
 
-### 风险规避
-- 闭源平台存在封号、服务中断等风险
-- 开源工具更适合长期使用
+<div class="reason-item">
+  <div class="reason-icon">🛡️</div>
+  <div>
+    <div class="reason-title">风险规避</div>
+    <div class="reason-desc">闭源平台存在封号、服务中断等风险<br/>开源工具更适合长期使用</div>
+  </div>
+</div>
 
-### 趋势把握
-- AI 发展明确走向智能体协助
-- 自动执行任务将成为主流
+<div class="reason-item">
+  <div class="reason-icon">📈</div>
+  <div>
+    <div class="reason-title">趋势把握</div>
+    <div class="reason-desc">AI 发展明确走向智能体协助<br/>自动执行任务将成为主流</div>
+  </div>
+</div>
 
-### 效率提升
-- 从"写代码"到"指挥 AI"
-- 专注于创造性工作
+<div class="reason-item">
+  <div class="reason-icon">⚡</div>
+  <div>
+    <div class="reason-title">效率提升</div>
+    <div class="reason-desc">从"写代码"到"<span v-mark.underline>指挥 AI</span>"<br/>专注于创造性工作</div>
+  </div>
+</div>
 
 </v-clicks>
+
+<style>
+.reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.reason-icon {
+  font-size: 1.5rem;
+  margin-top: 0.1rem;
+}
+.reason-title {
+  color: #4ade80;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+.reason-desc {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+</style>
 
 ::right::
 
