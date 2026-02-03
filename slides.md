@@ -1,370 +1,677 @@
 ---
 theme: seriph
-background: https://cover.sli.dev
-class: text-center
-highlighter: shiki
-lineNumbers: false
+title: OpenCode 介绍与实战
+author: 技术培训
 info: |
-  ## OpenCode Presentation
-  The open source AI coding agent.
+  ## OpenCode 介绍与实战
+  面向软件算法岗位的技术培训
+highlighter: shiki
 drawings:
   persist: false
 transition: slide-left
-title: OpenCode
 mdc: true
-css: unocss
+lineNumbers: true
+colorSchema: dark
+fonts:
+  sans: 'Noto Sans SC'
+  mono: 'Fira Code'
 ---
 
-# OpenCode
+# OpenCode 介绍与实战
 
-The open source AI coding agent
+面向软件算法岗位的技术培训
 
-<div class="pt-12 flex justify-center gap-4 text-lg">
-  <span class="px-2 py-1 rounded bg-white/10">
-    <carbon:star class="inline mr-1"/> 80K+ Stars
-  </span>
-  <span class="px-2 py-1 rounded bg-white/10">
-    <carbon:user class="inline mr-1"/> 1.5M Developers
-  </span>
-  <span class="px-2 py-1 rounded bg-white/10">
-    <carbon:cloud class="inline mr-1"/> 75+ Providers
+<div class="pt-12">
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
+    按空格键继续 <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
 <div class="abs-br m-6 flex gap-2">
-  <a href="https://github.com/anomalyco/opencode" target="_blank" class="text-xl icon-btn opacity-50 hover:text-white">
+  <a href="https://github.com/opencode-ai/opencode" target="_blank" alt="GitHub" title="Open in GitHub"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
 </div>
 
+<!--
+欢迎大家参加本次培训，今天我们将深入了解 OpenCode 这个强大的 AI 编程助手工具。
+-->
+
 ---
-layout: default
+layout: section
 ---
 
-# 今日议程
+# 第一部分
 
-<div class="grid grid-cols-2 gap-10 pt-4">
+## 为什么需要使用 OpenCode？
 
-<div>
+---
+layout: quote
+---
 
-- **核心洞察**
-  为什么 CLI Agent 正在超越 AI IDE
-- **架构解析**
-  Subagent 专家团队体系
-- **护城河**
-  Skill 与 Plugin 扩展系统
-
-</div>
-
-<div>
-
-- **实战对比**
-  OpenCode vs Claude Code
-- **生态增强**
-  oh-my-opencode
-- **未来展望**
-  Agentic Coding 的终局
-
-</div>
-
-</div>
+# "不可能把未来押给一家随时可能封号的公司"
 
 ---
 
-# 什么是 OpenCode?
+# Claude Code 的问题
+
+<v-clicks>
+
+- **封禁风险**：存在封禁中国用户的问题
+- **排斥竞争**：切断第三方调用权限、封禁 OpenCode 等竞争工具用户
+- **模型绑定**：与 Claude 模型强绑定，无法稳定使用其他 AI 模型（GPT、Gemini 等）
+- **服务不稳定**：账号随时可能被封禁，影响工作连续性
+
+</v-clicks>
+
+<div v-click class="mt-8 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+  <strong>核心痛点：</strong>作为开发者，我们需要一个稳定、可靠、不受单一厂商限制的工具
+</div>
+
+<!--
+这些问题在实际工作中会造成很大的困扰，尤其是当你的工作流程已经依赖这些工具时。
+-->
+
+---
+layout: two-cols
+---
+
+# OpenCode 的优势
+
+<v-clicks>
+
+### 开源且支持多模型
+- 可接入 **75+** 个 LLM 提供商
+- 支持 GPT、Gemini、Claude、国产模型等
+- 支持本地模型部署
+- 无需翻墙即可安装使用
+
+### 中国用户友好
+- 无使用障碍
+- 华人创始人
+- 飞书话题社区技术支持
+- 无封号风险
+
+</v-clicks>
+
+::right::
+
+<v-clicks>
+
+### 高可定制性
+- 类似 Android 系统的开放性
+- 支持深度定制
+- Oh My OpenCode 插件生态
+- 多智能体并行协作
+
+### 社区活跃
+- 开源透明
+- 快速迭代
+- 丰富的插件生态
+
+</v-clicks>
+
+<style>
+h3 {
+  color: #4ade80;
+  margin-top: 1rem;
+}
+</style>
+
+---
+layout: center
+class: text-center
+---
+
+# OpenCode vs Claude Code
 
 <div class="grid grid-cols-2 gap-8 mt-8">
 
-<div>
+<div class="p-6 bg-green-500/10 border border-green-500/30 rounded-lg">
 
-OpenCode 是一个**开源 AI 编码代理**，帮助你在终端、IDE 或桌面应用中编写代码。
+### OpenCode
 
-<div class="mt-6 space-y-3">
-  <div class="flex items-center gap-2">
-    <carbon:terminal class="text-green-400"/> <span><b>终端界面</b> - 原生 CLI 体验</span>
-  </div>
-  <div class="flex items-center gap-2">
-    <carbon:application class="text-blue-400"/> <span><b>桌面应用</b> - macOS, Windows, Linux</span>
-  </div>
-  <div class="flex items-center gap-2">
-    <carbon:code class="text-purple-400"/> <span><b>IDE 扩展</b> - VS Code 等编辑器</span>
-  </div>
+<div class="text-5xl font-bold text-green-400 my-4">95.2k</div>
+
+Stars on GitHub
+
+<div class="text-2xl text-gray-400 mt-2">8.9k Forks</div>
+
+</div>
+
+<div class="p-6 bg-gray-500/10 border border-gray-500/30 rounded-lg">
+
+### Claude Code
+
+<div class="text-5xl font-bold text-gray-400 my-4">63.2k</div>
+
+Stars on GitHub
+
+<div class="text-2xl text-gray-400 mt-2">4.8k Forks</div>
+
 </div>
 
 </div>
 
-<div class="text-sm">
+<div class="mt-6 text-sm text-gray-500">截止 2025年2月</div>
+
+---
+
+# OpenCode vs Cursor 等 AI IDE
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div v-click class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+
+### Cursor 模式
+
+- 围绕 IDE 运行
+- AI 是"高级助手"
+- 需关注代码逻辑、项目结构
+- **你在写代码**
+
+</div>
+
+<div v-click class="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+
+### OpenCode 模式
+
+- 以 AI Agent 为核心
+- 只需描述目标和要求
+- 专注需求、流程、结果检查
+- **AI 在写代码**
+
+</div>
+
+</div>
+
+<div v-click class="mt-8 text-center">
+
+<div class="text-xl">
+  角色转变：从 <span class="text-blue-400">借助 AI 写代码</span> → <span class="text-green-400">指挥 AI 工程师完成产品</span>
+</div>
+
+</div>
+
+<v-click>
+
+<div class="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm">
+  💡 CLI Coding Agent 才是核心，IDE 只是 UI 界面的一种形式
+</div>
+
+</v-click>
+
+---
+layout: section
+---
+
+# 第二部分
+
+## OpenCode 模型配置方案
+
+---
+
+# 模型推荐方案
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div v-click>
+
+### 任务类型 → 推荐模型
+
+| 任务类型 | 推荐模型                       |
+| -------- | ------------------------------ |
+| 规划     | Claude Opus 4.5 ≈ GPT5.2       |
+| 编程     | Claude Opus 4.5 > GPT5.2-Codex |
+| 前端设计 | Gemini 3 Pro                   |
+| 代码审查 | GPT5.2-Codex                   |
+| 多模态   | Gemini 3 Pro                   |
+| 简单任务 | MiniMax M2.1 / GLM 4.7         |
+
+</div>
+
+<div v-click>
+
+### 核心原则
+
+- **规划任务**用最强模型
+- **编程任务**注重代码质量
+- **简单任务**用性价比高的模型
+- 根据实际效果动态调整
+
+</div>
+
+</div>
+
+<style>
+table {
+  font-size: 0.9rem;
+}
+th {
+  background-color: rgba(74, 222, 128, 0.1);
+}
+</style>
+
+---
+
+# 推荐的订阅方案
+
+<div class="grid grid-cols-3 gap-4 mt-6">
+
+<div v-click class="p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
+
+### GitHub Copilot
+
+<div class="text-sm mt-2 text-gray-400">
+
+- 与 OpenCode 深度集成
+- 支持多种模型切换
+- 订阅价格合理
+
+</div>
+
+</div>
+
+<div v-click class="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+
+### ChatGPT Plus
+
+<div class="text-sm mt-2 text-gray-400">
+
+- GPT 系列模型
+- 稳定可靠
+- 适合日常使用
+
+</div>
+
+</div>
+
+<div v-click class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+
+### 国内大模型套餐
+
+<div class="text-sm mt-2 text-gray-400">
+
+- 智谱 Coding Plan
+- Minimax Coding Plan
+- Kimi Code Plan
+
+ </div>
+
+</div>
+
+</div>
+
+---
+
+# 不推荐的方案
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div v-click="1" class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+
+### ❌ CC-Switch 方案
+
+**风险点：**
+
+- 只能通过 API key 调用
+- 无法使用订阅套餐
+- 调用频率控制不当成本极高
+- 平台政策风险大
+- 可能导致接口收紧或封禁
+
+</div>
+
+<div v-click="2" class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+
+### ❌ API 计费方案
+
+**风险点：**
+
+- 302.ai、OpenRouter 等第三方平台
+- 对编程深度用户成本过高
+- 无法享受订阅优惠
+- 费用难以控制
+
+</div>
+
+</div>
+
+<div v-click="3" class="mt-6 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm text-center">
+  ⚠️ 不推荐普通用户尝试上述方案
+</div>
+
+---
+layout: section
+---
+
+# 第三部分
+
+## OpenCode 实战
+
+---
+
+# 工作流建议
+
+<div class="grid grid-cols-2 gap-4 mt-2">
+
+<div v-click class="text-sm">
+
+### 推荐工作流
+
+1. **需求分析** - 明确目标，拆解小任务
+2. **任务规划** - 强模型做整体规划
+3. **并行开发** - 多会话处理不同模块
+4. **检查验收** - 代码审查、功能测试
+
+</div>
+
+<div v-click class="text-sm">
+
+### 最佳实践
+
+- 给 AI 足够的上下文
+- 描述清晰的目标
+- 分步骤执行复杂任务
+- 及时检查中间结果
+- 使用 git 做版本控制
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm">
+  💡 <strong>核心原则</strong>：从"写代码"转变为"指挥 AI"，专注于需求理解、架构设计和结果验收
+</div>
+
+<style>
+h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+</style>
+
+---
+
+# Oh My OpenCode 插件
+
+<div class="grid grid-cols-2 gap-4 mt-2">
+
+<div v-click class="text-sm">
+
+### 核心能力
+
+- **Sisyphus 主智能体**：协调整体任务执行
+- **多智能体协调**：Oracle、Librarian、Explore 等专业 Agent 并行工作
+- **最佳实践集成**：内置专业的开发规范和流程
+- **效率提升**：Todo 强制继续、自动代码审查等
+
+</div>
+
+<div v-click class="text-sm">
+
+### 安装使用
 
 ```bash
-# 一键安装
-curl -fsSL https://opencode.ai/install | bash
+# 推荐：让 AI Agent 执行安装
+# 将以下 URL 发送给 Claude Code / OpenCode：
+https://raw.githubusercontent.com/code-yeongyu/
+oh-my-opencode/refs/heads/master/docs/guide/
+installation.md
 
-# 或通过包管理器
-npm install -g opencode-ai
-brew install opencode
+# 或使用 npx 交互式安装
+npx oh-my-opencode@latest install
 ```
 
-<div class="mt-4 p-3 rounded bg-blue-500/10 border border-blue-500/20">
-  <carbon:idea class="text-blue-400 inline mr-2"/>
-  <span class="text-blue-300">由 SST (Serverless Stack) 团队打造</span>
-</div>
-
 </div>
 
 </div>
 
 ---
-layout: two-cols
-layoutClass: gap-8
----
 
-# 核心特性一览
+# Oh My OpenCode 多智能体架构
 
-<v-clicks>
+<div class="flex justify-center mt-2">
 
-- **LSP 集成**
-  自动加载正确的语言服务器
-  
-- **多会话支持**
-  同一项目并行启动多个 Agent
-  
-- **会话分享**
-  生成链接分享调试上下文
-  
-- **隐私优先**
-  不存储任何代码或上下文数据
-
-</v-clicks>
-
-::right::
-
-<div class="mt-10">
-
-<v-clicks>
-
-- **GitHub Copilot 集成**
-  直接使用 Copilot 账号登录
-  
-- **ChatGPT Plus/Pro**
-  使用 OpenAI 订阅账号
-  
-- **75+ 模型提供商**
-  通过 Models.dev 接入，含本地模型
-  
-- **完全开源**
-  MIT 协议，600+ 贡献者
-
-</v-clicks>
-
-</div>
-
----
-layout: two-cols
-layoutClass: gap-8
----
-
-# AI IDE (Cursor)
-
-**受限的沙箱环境**
-
-- **权限受限**
-  运行在沙箱中，无法触达系统
-  
-- **平台锁定**
-  难以集成第三方工具链
-  
-- **黑盒状态**
-  思考过程不可见，难以调试
-  
-- **订阅模式**
-  按月付费，无法自托管
-
-::right::
-
-# CLI Agent (OpenCode)
-
-**完整的系统掌控**
-
-- **User-level 权限**
-  直接调用所有系统命令
-  
-- **无限扩展**
-  Plugin/Skill 连接任意 API
-  
-- **透明可控**
-  完整的思考日志与会话分享
-  
-- **灵活计费**
-  按量付费或使用免费模型
-
-<br>
-
-> **核心差异**
-> IDE 试图把 AI 关进笼子，CLI 赋予 AI 自由。
-
----
-
-# Subagent：专家团队架构
-
-OpenCode 不仅仅是一个聊天机器人，它是一个**组织架构**。
-
-```mermaid
-graph TD
-    User((User)) --> Primary[Primary Agent]
-    
-    subgraph "Primary Layer"
-        Primary -->|Tab Switch| Build[Build Agent]
-        Primary -->|Tab Switch| Plan[Plan Agent]
+```mermaid {scale: 0.65}
+flowchart TB
+    subgraph User["👤 用户"]
+        Prompt[输入 Prompt]
     end
-    
-    subgraph "Subagent Layer"
-        Build -.->|Delegate| Gen[General Agent]
-        Build -.->|Delegate| Exp[Explore Agent]
-        Build -.->|Delegate| Doc[Docs Writer]
-        Build -.->|Delegate| Sec[Security Auditor]
+
+    subgraph Main["🏛️ 主智能体"]
+        Sisyphus["Sisyphus<br/>(Opus 4.5)<br/>任务协调者"]
     end
-    
-    Exp -->|Results| Build
-    Gen -->|Done| Build
+
+    subgraph Planning["📋 规划三件套"]
+        Prometheus["Prometheus<br/>(Opus 4.5 thinking)<br/>规划器"]
+        Metis["Metis<br/>(Opus 4.5 thinking)<br/>计划顾问"]
+        Momus["Momus<br/>(GPT 5.2)<br/>计划审查"]
+    end
+
+    subgraph Specialists["🔧 专业智能体"]
+        Oracle["Oracle<br/>(GPT 5.2)<br/>架构/调试"]
+        Hephaestus["Hephaestus<br/>(GPT 5.2 Codex)<br/>深度自主执行"]
+        Frontend["Frontend<br/>(Gemini 3 Pro)<br/>UI/UX开发"]
+        Librarian["Librarian<br/>(Sonnet 4.5)<br/>文档/代码搜索"]
+        Explore["Explore<br/>(Haiku 4.5)<br/>快速代码探索"]
+    end
+
+    Prompt --> Sisyphus
+    Sisyphus --> Prometheus
+    Prometheus <--> Metis
+    Prometheus <--> Momus
+    Sisyphus --> Oracle
+    Sisyphus --> Hephaestus
+    Sisyphus --> Frontend
+    Sisyphus --> Librarian
+    Sisyphus --> Explore
 ```
 
-<div class="grid grid-cols-3 gap-4 mt-4 text-center">
-  <div>🎯 <b>任务分解</b></div>
-  <div>🚀 <b>并行执行</b></div>
-  <div>🧠 <b>模型专精</b></div>
+</div>
+
+<div class="text-xs text-gray-400 text-center mt-1">
+  💡 使用 <code>ultrawork</code> 或 <code>ulw</code> 关键词激活完整多智能体协作
 </div>
 
 ---
-layout: two-cols
----
 
-# Skill 系统：知识固化
+# 其他推荐插件/工具
 
-IDE 的 Prompt 是临时的<br>
-OpenCode 的 **Skill 是资产**
 
-> 将团队的最佳实践编码为可复用的 Skill
+<div class="grid grid-cols-2 gap-4 mt-4">
+
+<div v-click class="p-3 bg-gray-500/10 rounded">
+
+### find-skills
+查找和管理 skills
+
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded">
+
+### opencode-antigravity-auth
+认证和权限管理
+
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded">
+
+### obra/superpowers
+增强能力集合
+
+</div>
+
+<div v-click class="p-3 bg-gray-500/10 rounded">
+
+### ralph-loop
+自动化循环执行任务
+
+</div>
+
+ </div>
 
 <div class="mt-6">
 
-**Skill 的三大优势：**
+### MCP 服务推荐
 
-1. **可版本控制** - 随代码库演进
-2. **可共享复用** - 团队知识沉淀
-3. **精准触发** - 自动匹配场景
+<v-clicks>
+
+- **Playwright MCP**：浏览器自动化
+- **Git MCP**：Git 操作增强
+- **Context7**：文档查询服务
+
+</v-clicks>
 
 </div>
+
+---
+
+# 常用操作快捷键
+
+<div class="mt-4">
+
+| 快捷键          | 功能说明                                                  |
+| --------------- | --------------------------------------------------------- |
+| `Ctrl + X, L`   | 切换会话（多会话处理，如同时开发前后端）                  |
+| `Ctrl + T`      | 切换模型 Variant（Thinking 模式、GPT 的 low/medium/high） |
+| `Ctrl + X, M`   | 切换模型                                                  |
+| `Ctrl + P`      | 打开命令面板                                              |
+| `Ctrl + X, ←/→` | 查看 Subagent                                             |
+| `Ctrl + Enter`  | 换行输入                                                  |
+
+</div>
+
+<div v-click class="mt-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+
+### 💡 小技巧
+
+多会话处理是一个强大的功能，可以让你在一个窗口写前端代码，另一个窗口写后端代码，大幅提升开发效率。
+
+</div>
+
+<style>
+table {
+  font-size: 0.85rem;
+}
+th {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+td:first-child {
+  font-family: 'Fira Code', monospace;
+  color: #60a5fa;
+}
+</style>
+
+---
+layout: section
+---
+
+# 第四部分
+
+## 实战演示
+
+---
+layout: center
+---
+
+# Demo Time
+
+<div class="text-xl text-gray-400 mt-4">
+  现场演示 OpenCode 的实际使用
+</div>
+
+<div class="mt-8 grid grid-cols-2 gap-4 text-sm">
+
+<div v-click class="p-4 bg-gray-500/10 rounded">
+
+### Demo 1: 基础对话
+- 启动 OpenCode
+- 基本命令操作
+- 模型切换
+
+</div>
+
+<div v-click class="p-4 bg-gray-500/10 rounded">
+
+### Demo 2: 代码生成
+- 描述需求
+- 生成代码
+- 迭代优化
+
+</div>
+
+<div v-click class="p-4 bg-gray-500/10 rounded">
+
+### Demo 3: 多会话
+- 创建多个会话
+- 并行开发
+- 会话切换
+
+</div>
+
+<div v-click class="p-4 bg-gray-500/10 rounded">
+
+### Demo 4: 插件使用
+- 安装插件
+- 配置和使用
+- 效果对比
+
+</div>
+
+</div>
+
+---
+layout: section
+---
+
+# 结语
+
+---
+layout: two-cols
+---
+
+# 为什么选择 OpenCode
+
+<v-clicks>
+
+### 风险规避
+- 闭源平台存在封号、服务中断等风险
+- 开源工具更适合长期使用
+
+### 趋势把握
+- AI 发展明确走向智能体协助
+- 自动执行任务将成为主流
+
+### 效率提升
+- 从"写代码"到"指挥 AI"
+- 专注于创造性工作
+
+</v-clicks>
 
 ::right::
 
-```yaml {all|2-3|6-9|11-12}
-# .opencode/skills/api-design/SKILL.md
-name: api-design
-description: Design RESTful APIs following standards
+<div v-click class="ml-4">
 
-## 我负责什么
-- 设计符合 OpenAPI 3.0 规范的接口
-- 强制使用 Snake Case 命名数据库字段
-- 自动生成 Zod Schema 验证
+### AI 编程的未来
 
-## 何时使用我
-当用户要求"创建新接口"或"设计数据库"时
-```
+<div class="p-4 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-lg mt-4">
 
----
+以对话和调度为核心的工具将越来越主流
 
-# Plugin 系统：生命周期挂钩
-
-OpenCode 提供了 **25+ 生命周期钩子**，这是 IDE 插件无法比拟的。
-
-```typescript {all|4-10|12-16}
-// .opencode/plugins/security-guard.ts
-export const SecurityGuard = async ({ project, client, $ }) => {
-  return {
-    // 在工具执行前拦截
-    "tool.execute.before": async (input, output) => {
-      // 禁止非授权 Agent 读取 .env
-      if (input.tool === "read" && output.args.filePath.includes(".env")) {
-        throw new Error("Security Alert: .env access denied!")
-      }
-    },
-    
-    // 任务完成通知
-    event: async ({ event }) => {
-      if (event.type === "session.idle") {
-        await $`osascript -e 'display notification "任务完成!"'`
-      }
-    }
-  }
-}
-```
-
----
-
-# 模型生态：自由选择
-
-<div class="grid grid-cols-3 gap-6 mt-8">
-
-<div class="p-4 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/30">
-  <div class="text-2xl mb-2">🤖</div>
-  <div class="font-bold text-purple-300">Anthropic</div>
-  <div class="text-sm opacity-70 mt-1">Claude 3.5/4 Sonnet, Opus</div>
-</div>
-
-<div class="p-4 rounded-lg bg-gradient-to-br from-green-500/20 to-teal-500/20 border border-green-500/30">
-  <div class="text-2xl mb-2">🧠</div>
-  <div class="font-bold text-green-300">OpenAI</div>
-  <div class="text-sm opacity-70 mt-1">GPT-4o, o1, o3</div>
-</div>
-
-<div class="p-4 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30">
-  <div class="text-2xl mb-2">💎</div>
-  <div class="font-bold text-blue-300">Google</div>
-  <div class="text-sm opacity-70 mt-1">Gemini 2.0 Flash/Pro</div>
-</div>
-
-<div class="p-4 rounded-lg bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-500/30">
-  <div class="text-2xl mb-2">🔥</div>
-  <div class="font-bold text-orange-300">DeepSeek</div>
-  <div class="text-sm opacity-70 mt-1">V3, R1 (免费/低成本)</div>
-</div>
-
-<div class="p-4 rounded-lg bg-gradient-to-br from-gray-500/20 to-slate-500/20 border border-gray-500/30">
-  <div class="text-2xl mb-2">🏠</div>
-  <div class="font-bold text-gray-300">本地模型</div>
-  <div class="text-sm opacity-70 mt-1">Ollama, LM Studio</div>
-</div>
-
-<div class="p-4 rounded-lg bg-gradient-to-br from-yellow-500/20 to-amber-500/20 border border-yellow-500/30">
-  <div class="text-2xl mb-2">🔌</div>
-  <div class="font-bold text-yellow-300">GitHub Copilot</div>
-  <div class="text-sm opacity-70 mt-1">使用已有订阅</div>
+<div class="mt-4 text-sm text-gray-400">
+  典型案例：Clawdbot（Mac 后台智能体，通过即时通讯沟通）
 </div>
 
 </div>
 
-<div class="mt-6 text-center text-sm opacity-70">
-  通过 <span class="text-blue-400">Models.dev</span> 统一接入 75+ 模型提供商
+<div class="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-sm">
+
+💡 **建议**：尽早熟悉和掌握这类工具，建立新的工作范式
+
 </div>
 
----
-
-# 体验报告：超越 Claude Code
-
-| 维度 | OpenCode | Claude Code |
-| :--- | :--- | :--- |
-| **模型选择** | **75+ 模型** (含免费模型) | 仅 Anthropic |
-| **运行环境** | 终端 / 桌面 / IDE | 仅终端 |
-| **GitHub Copilot** | ✅ 可直接使用 | ❌ 不支持 |
-| **账号安全** | **无风险** (API Key) | 有封号风险 |
-| **可扩展性** | **Skill + Plugin 系统** | 仅配置修改 |
-| **成本控制** | **按量 / 免费模型** | 订阅制 ($20/mo+) |
-| **开源协议** | **MIT 开源** | 闭源 |
-
-<br>
-
-<div class="text-center text-blue-400 font-bold">
-  OpenCode = Claude Code 的体验 + 开源的自由 + 无限的扩展
 </div>
 
 ---
@@ -372,201 +679,45 @@ layout: center
 class: text-center
 ---
 
-# oh-my-opencode
+# 谢谢大家！
 
-社区驱动的增强包，让 OpenCode 进化为完全体。
-
-<div class="grid grid-cols-2 gap-x-12 gap-y-8 text-left mt-8">
-
-<div>
-  <div class="text-purple-400 font-bold">🔮 Oracle Agent</div>
-  <div class="text-sm opacity-80">高智商架构师，负责复杂逻辑推理与架构设计</div>
+<div class="text-xl text-gray-400 mt-4">
+  欢迎提问和交流
 </div>
 
-<div>
-  <div class="text-blue-400 font-bold">📚 Librarian Agent</div>
-  <div class="text-sm opacity-80">文档专家，自动检索外部库文档与示例</div>
-</div>
+<div class="mt-12 grid grid-cols-3 gap-8 text-sm">
 
 <div>
-  <div class="text-yellow-400 font-bold">🔭 Explore Agent</div>
-  <div class="text-sm opacity-80">代码库探索者，基于 AST 深度理解项目结构</div>
+  <div class="text-gray-500 mb-2">GitHub</div>
+  <a href="https://github.com/opencode-ai/opencode" target="_blank" class="text-blue-400">
+    opencode-ai/opencode
+  </a>
 </div>
 
 <div>
-  <div class="text-green-400 font-bold">🔄 Ultrawork Loop</div>
-  <div class="text-sm opacity-80">无人值守开发闭环，自动迭代直到完成</div>
+  <div class="text-gray-500 mb-2">文档</div>
+  <a href="https://docs.opencode.ai" target="_blank" class="text-blue-400">
+    docs.opencode.ai
+  </a>
 </div>
 
 <div>
-  <div class="text-red-400 font-bold">🎯 Prometheus Plan</div>
-  <div class="text-sm opacity-80">智能规划器，复杂任务自动拆解编排</div>
-</div>
-
-<div>
-  <div class="text-cyan-400 font-bold">🔍 Code Reviewer</div>
-  <div class="text-sm opacity-80">代码审查员，发现潜在问题与优化建议</div>
+  <div class="text-gray-500 mb-2">社区</div>
+  <span class="text-blue-400">
+    飞书话题社区
+  </span>
 </div>
 
 </div>
 
----
-
-# 隐私与企业级安全
-
-<div class="grid grid-cols-2 gap-8 mt-8">
-
-<div>
-
-### 隐私优先设计
-
-- **零数据存储**
-  OpenCode 不存储任何代码或上下文
-  
-- **本地模型支持**
-  敏感项目可完全离线运行
-  
-- **自托管选项**
-  企业可部署私有实例
-
-</div>
-
-<div>
-
-### Zen 订阅服务
-
-为追求稳定性的团队提供：
-
-- **经过验证的模型**
-  专门针对编码任务测试优化
-  
-- **一致的性能**
-  无需担心不同提供商的差异
-  
-- **企业级支持**
-  专业团队保障服务质量
-
-</div>
-
-</div>
-
-<div class="mt-8 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-center">
-  <carbon:security class="text-green-400 inline mr-2"/>
-  <span>适用于金融、医疗、政府等隐私敏感环境</span>
-</div>
-
----
-layout: center
-class: text-center
----
-
-# Agentic Coding 的未来
-
-从 **Copilot (副驾驶)** 到 **Autopilot (自动驾驶)**
-
-<div class="flex justify-center gap-12 mt-12 text-left">
-
-<div>
-  <div class="text-4xl mb-2">💻</div>
-  <div class="font-bold">终端回归</div>
-  <div class="text-xs opacity-70">CLI 是最高效的系统接口</div>
-</div>
-
-<div>
-  <div class="text-4xl mb-2">🔌</div>
-  <div class="font-bold">MCP 标准化</div>
-  <div class="text-xs opacity-70">Model Context Protocol 连接万物</div>
-</div>
-
-<div>
-  <div class="text-4xl mb-2">🛒</div>
-  <div class="font-bold">Skill 市场</div>
-  <div class="text-xs opacity-70">复用全球开发者的智慧</div>
-</div>
-
-<div>
-  <div class="text-4xl mb-2">🤝</div>
-  <div class="font-bold">多 Agent 协作</div>
-  <div class="text-xs opacity-70">专家团队并行工作</div>
-</div>
-
-</div>
-
----
-
-# 快速上手
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-### 1. 安装 OpenCode
-
-```bash
-# macOS / Linux
-curl -fsSL https://opencode.ai/install | bash
-
-# 或使用包管理器
-npm install -g opencode-ai
-brew install opencode
-```
-
-### 2. 配置模型
-
-```bash
-# 使用 GitHub Copilot
-opencode auth login github
-
-# 或设置 API Key
-export ANTHROPIC_API_KEY=sk-xxx
-```
-
-</div>
-
-<div>
-
-### 3. 开始使用
-
-```bash
-# 在项目目录启动
-cd your-project
-opencode
-
-# 或带上初始提示
-opencode "帮我重构这个函数"
-```
-
-### 4. 探索更多
-
-- 📖 文档: [opencode.ai/docs](https://opencode.ai/docs)
-- 💬 Discord: [opencode.ai/discord](https://opencode.ai/discord)
-- 🌟 GitHub: [github.com/anomalyco/opencode](https://github.com/anomalyco/opencode)
-
-</div>
-
+<div class="abs-br m-6">
+  <carbon-logo-github class="text-2xl opacity-50" />
 </div>
 
 ---
 layout: end
-class: text-center
 ---
 
-# Thank You
+# 培训结束
 
-<div class="text-2xl mb-8">Join the Revolution</div>
-
-<div class="flex justify-center gap-6 text-lg">
-  <a href="https://opencode.ai" class="px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-500/40 hover:bg-blue-500/30">
-    🌐 opencode.ai
-  </a>
-  <a href="https://github.com/anomalyco/opencode" class="px-4 py-2 rounded-lg bg-gray-500/20 border border-gray-500/40 hover:bg-gray-500/30">
-    <carbon-logo-github class="inline mr-1"/> GitHub
-  </a>
-  <a href="https://opencode.ai/discord" class="px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/40 hover:bg-purple-500/30">
-    💬 Discord
-  </a>
-</div>
-
-<div class="mt-12 text-sm opacity-50">
-  Powered by OpenCode & oh-my-opencode
-</div>
+感谢参与！
