@@ -543,21 +543,54 @@ transition: fade
 
 ### 推荐工作流
 
-```mermaid
-graph TD
-    A[需求分析] -->|明确目标| B[任务规划]
-    B -->|拆解任务| C{并行开发}
-    C -->|Subagent 1| D[前端开发]
-    C -->|Subagent 2| E[后端开发]
-    D --> F[检查验收]
-    E --> F
-    F -->|代码审查| G[合并代码]
-    
-    style A fill:#10b98120,stroke:#10b981
-    style B fill:#3b82f620,stroke:#3b82f6
-    style C fill:#8b5cf620,stroke:#8b5cf6
-    style G fill:#10b98120,stroke:#10b981
-```
+<div class="mt-4 flex flex-col gap-2 text-xs font-mono text-gray-300 scale-90 origin-top-left">
+  <div class="flex items-center gap-3 bg-green-500/10 p-2 rounded-md border-l-2 border-green-500">
+    <div class="font-bold text-green-400 w-24">1. 需求</div>
+    <div class="text-gray-400 flex-1">Prometheus 需求分析</div>
+  </div>
+  
+  <div class="flex justify-center text-gray-600 -my-1">
+    <carbon:arrow-down />
+  </div>
+
+  <div class="flex items-center gap-3 bg-blue-500/10 p-2 rounded-md border-l-2 border-blue-500">
+    <div class="font-bold text-blue-400 w-24">2. 规划</div>
+    <div class="text-gray-400 flex-1">Prometheus <-> Momus 审查</div>
+  </div>
+
+  <div class="flex justify-center text-gray-600 -my-1">
+    <carbon:arrow-down />
+  </div>
+
+  <div class="flex items-center gap-3 bg-indigo-500/10 p-2 rounded-md border-l-2 border-indigo-500">
+    <div class="font-bold text-indigo-400 w-24">3. 调度</div>
+    <div class="text-gray-400 flex-1">Atlas 任务分发</div>
+  </div>
+
+  <div class="flex justify-center text-gray-600 -my-1">
+    <carbon:arrow-down />
+  </div>
+
+  <div class="grid grid-cols-2 gap-2">
+    <div class="bg-purple-500/10 p-2 rounded-md border-l-2 border-purple-500">
+      <div class="font-bold text-purple-400 mb-1">Sisyphus A</div>
+      <div class="text-[10px] text-gray-400">前端开发</div>
+    </div>
+    <div class="bg-purple-500/10 p-2 rounded-md border-l-2 border-purple-500">
+      <div class="font-bold text-purple-400 mb-1">Sisyphus B</div>
+      <div class="text-[10px] text-gray-400">后端开发</div>
+    </div>
+  </div>
+
+  <div class="flex justify-center text-gray-600 -my-1">
+    <carbon:arrow-down />
+  </div>
+
+  <div class="flex items-center gap-3 bg-orange-500/10 p-2 rounded-md border-l-2 border-orange-500">
+    <div class="font-bold text-orange-400 w-24">5. 交付</div>
+    <div class="text-gray-400 flex-1">Momus 最终验收</div>
+  </div>
+</div>
 
 </div>
 
@@ -811,7 +844,7 @@ sequenceDiagram
 
 </div>
 
-<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg text-sm text-center">
+<div v-click class="mt-0 p-3 bg-gray-500/10 rounded-lg text-sm text-center">
   <strong>核心理念</strong>：你不再是独自编码，而是在<span class="text-green-400">管理一支 AI 开发团队</span>
 </div>
 
