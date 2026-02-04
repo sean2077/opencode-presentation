@@ -72,7 +72,7 @@ class: text-center
   font-size: 1rem;
   color: #4ade80;
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 .agenda-title {
   font-size: 1.5rem;
@@ -104,17 +104,52 @@ transition: fade
 
 # Claude Code 的问题
 
-<v-clicks>
+<div class="grid grid-cols-2 gap-6 mt-8">
 
-- **<span v-mark.underline.red>封禁风险</span>**：存在封禁中国用户的问题
-- **排斥竞争**：切断第三方调用权限、封禁 OpenCode 等竞争工具用户
-- **模型绑定**：与 Claude 模型强绑定，无法稳定使用其他 AI 模型（GPT、Gemini 等）
-- **服务不稳定**：账号随时可能被封禁，影响工作连续性
+<div v-click class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+  <div class="flex items-center gap-2 mb-2">
+    <carbon:warning-alt class="text-red-400 text-xl"/>
+    <div class="font-bold text-red-400">封禁风险</div>
+  </div>
+  <div class="text-sm text-gray-400">
+    存在封禁中国用户的问题，账号安全无法保障
+  </div>
+</div>
 
-</v-clicks>
+<div v-click class="p-4 bg-orange-500/10 border border-orange-500/30 rounded-lg">
+  <div class="flex items-center gap-2 mb-2">
+    <carbon:locked class="text-orange-400 text-xl"/>
+    <div class="font-bold text-orange-400">排斥竞争</div>
+  </div>
+  <div class="text-sm text-gray-400">
+    切断第三方调用权限、封禁 OpenCode 等竞争工具用户
+  </div>
+</div>
 
-<div v-click class="mt-8 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-  <strong>核心痛点：</strong>作为开发者，我们需要一个稳定、可靠、不受单一厂商限制的工具
+<div v-click class="p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+  <div class="flex items-center gap-2 mb-2">
+    <carbon:connection-signal-off class="text-yellow-400 text-xl"/>
+    <div class="font-bold text-yellow-400">模型绑定</div>
+  </div>
+  <div class="text-sm text-gray-400">
+    强绑定 Claude 模型，无法使用 GPT、Gemini 等其他模型
+  </div>
+</div>
+
+<div v-click class="p-4 bg-gray-500/10 border border-gray-500/30 rounded-lg">
+  <div class="flex items-center gap-2 mb-2">
+    <carbon:activity class="text-gray-400 text-xl"/>
+    <div class="font-bold text-gray-400">服务不稳定</div>
+  </div>
+  <div class="text-sm text-gray-400">
+    账号随时可能被封禁，严重影响工作流连续性
+  </div>
+</div>
+
+</div>
+
+<div v-click class="mt-8 p-4 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-lg text-center">
+  <strong>核心痛点</strong>：作为开发者，我们需要一个<span class="text-red-400 font-bold">稳定、可靠、不受单一厂商限制</span>的工具
 </div>
 
 <!--
@@ -407,6 +442,9 @@ th {
 </div>
 
 ---
+layout: center
+class: text-center
+---
 
 # 不推荐的方案
 
@@ -461,6 +499,27 @@ th {
   ⚠️ 以上方案或成本过高，或存在政策风险，不推荐普通用户尝试
 </div>
 
+<div class="mt-8 flex justify-around text-sm text-gray-400">
+  <div class="flex flex-col items-center gap-2" v-click="5">
+    <div class="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center transition hover:scale-110">
+      <carbon:money class="text-red-400 text-2xl"/>
+    </div>
+    <span>成本不可控</span>
+  </div>
+  <div class="flex flex-col items-center gap-2" v-click="6">
+    <div class="w-12 h-12 rounded-full bg-orange-500/10 border border-orange-500/30 flex items-center justify-center transition hover:scale-110">
+      <carbon:warning-filled class="text-orange-400 text-2xl"/>
+    </div>
+    <span>封号风险高</span>
+  </div>
+  <div class="flex flex-col items-center gap-2" v-click="7">
+    <div class="w-12 h-12 rounded-full bg-gray-500/10 border border-gray-500/30 flex items-center justify-center transition hover:scale-110">
+      <carbon:network-4 class="text-gray-400 text-2xl"/>
+    </div>
+    <span>生态封闭</span>
+  </div>
+</div>
+
 ---
 layout: section
 transition: fade
@@ -484,10 +543,21 @@ transition: fade
 
 ### 推荐工作流
 
-1. **需求分析** - 明确目标，拆解小任务
-2. **任务规划** - 强模型做整体规划
-3. **并行开发** - 多会话处理不同模块
-4. **检查验收** - 代码审查、功能测试
+```mermaid
+graph TD
+    A[需求分析] -->|明确目标| B[任务规划]
+    B -->|拆解任务| C{并行开发}
+    C -->|Subagent 1| D[前端开发]
+    C -->|Subagent 2| E[后端开发]
+    D --> F[检查验收]
+    E --> F
+    F -->|代码审查| G[合并代码]
+    
+    style A fill:#10b98120,stroke:#10b981
+    style B fill:#3b82f620,stroke:#3b82f6
+    style C fill:#8b5cf620,stroke:#8b5cf6
+    style G fill:#10b98120,stroke:#10b981
+```
 
 </div>
 
@@ -495,11 +565,11 @@ transition: fade
 
 ### 最佳实践
 
-- 给 AI 足够的上下文
-- 描述清晰的目标
-- 分步骤执行复杂任务
-- 及时检查中间结果
-- 使用 git 做版本控制
+- **上下文管理**：给 AI 足够的上下文，但不要过多干扰
+- **目标清晰**：描述清晰的目标，避免模糊指令
+- **步骤化**：分步骤执行复杂任务，"Step by step"
+- **及时反馈**：及时检查中间结果，纠正偏差
+- **版本控制**：使用 git 做版本控制，随时回滚
 
 </div>
 
@@ -550,6 +620,22 @@ npx oh-my-opencode@latest install
 
 </div>
 
+</div>
+
+<div v-click class="mt-6 bg-[#1e1e1e] p-4 rounded-lg border border-gray-700 font-mono text-xs shadow-xl">
+  <div class="flex gap-1.5 mb-3 border-b border-gray-700 pb-2">
+    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+    <div class="text-gray-500 ml-2">zsh — 80x24</div>
+  </div>
+  <div class="text-green-400 font-bold">$ npx oh-my-opencode install</div>
+  <div class="text-gray-300 mt-1">Downloading core components... <span class="text-green-500">[100%]</span></div>
+  <div class="text-gray-300">✔ Sisyphus Agent installed</div>
+  <div class="text-gray-300">✔ Skill: git-master installed</div>
+  <div class="text-gray-300">✔ Skill: playwright installed</div>
+  <div class="text-gray-300">✔ Skill: verification-before-completion installed</div>
+  <div class="text-blue-400 mt-2">✨ Ready to work! Type 'ultrawork' to start.</div>
 </div>
 
 ---
@@ -665,15 +751,20 @@ flowchart TB
 
 ### 🐛 Bug 修复场景
 
-```text {lines:false}
-用户: "生产环境报 500 错误"
-         ↓
-1️⃣ Explore → 快速定位相关代码
-2️⃣ Oracle  → 深度分析根本原因  
-3️⃣ Librarian → 查阅框架文档
-4️⃣ Sisyphus → 协调修复并验证
-         ↓
-✅ 10 分钟内定位修复
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant E as Explore
+    participant O as Oracle
+    participant S as Sisyphus
+    
+    U->>E: 生产环境报 500
+    E->>E: 定位代码
+    E-->>O: 上下文
+    O->>O: 分析根因
+    O-->>S: 修复方案
+    S->>S: 执行修复
+    S-->>U: 修复完成
 ```
 
 </div>
@@ -682,15 +773,22 @@ flowchart TB
 
 ### 🚀 新功能开发场景
 
-```text {lines:false}
-用户: "添加 Stripe 支付功能"
-         ↓
-1️⃣ Prometheus → 需求拆解规划
-2️⃣ Librarian  → 并行查 Stripe 文档
-3️⃣ Hephaestus → 端到端自主实现
-4️⃣ Momus → 方案完整性审查
-         ↓
-✅ 从规划到实现一站式完成
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant P as Prometheus
+    participant H as Hephaestus
+    participant M as Momus
+    
+    U->>P: 添加 Stripe 支付
+    P->>P: 拆解任务
+    P-->>H: 子任务列表
+    loop 开发循环
+        H->>H: 编写代码
+        H->>M: 提交审查
+        M-->>H: 反馈意见
+    end
+    H-->>U: 功能交付
 ```
 
 </div>
@@ -703,51 +801,134 @@ flowchart TB
 
 ---
 
-# 其他推荐插件/工具
+# Skills 生态：扩展 OpenCode 能力
 
+<div class="text-sm text-gray-400 mb-3">通过 Skills 可以快速为 Agent 注入领域专业知识</div>
+
+<div class="grid grid-cols-2 gap-3">
+
+<div v-click class="p-2 bg-purple-500/10 border border-purple-500/30 rounded text-sm">
+
+### <carbon-flash class="inline text-purple-400"/> obra/superpowers
+多智能体协作增强包（Oh My OpenCode 使用）
+
+```bash {lines:false}
+npx skills add obra/superpowers
+```
+
+</div>
+
+<div v-click class="p-2 bg-blue-500/10 border border-blue-500/30 rounded text-sm">
+
+### <carbon-document class="inline text-blue-400"/> anthropics/claude-plugins-official
+官方插件集：PDF/PPTX/XLSX 处理等
+
+```bash {lines:false}
+npx skills add anthropics/claude-plugins-official
+```
+
+</div>
+
+<div v-click class="p-2 bg-orange-500/10 border border-orange-500/30 rounded text-sm">
+
+### <carbon-star class="inline text-orange-400"/> ComposioHQ/awesome-claude-skills
+社区精选 skills 合集
+
+```bash {lines:false}
+npx skills add ComposioHQ/awesome-claude-skills
+```
+
+</div>
+
+<div v-click class="p-2 bg-green-500/10 border border-green-500/30 rounded text-sm">
+
+### <carbon-terminal class="inline text-green-400"/> vercel-labs/agent-skills
+React/Next.js 最佳实践、组件模式
+
+```bash {lines:false}
+npx skills add vercel-labs/agent-skills
+```
+
+</div>
+
+</div>
+
+<div v-click class="mt-3 p-2 bg-gray-500/10 rounded text-xs text-center">
+  💡 使用 <code>/find-skills</code> 命令让 Agent 帮你搜索和安装所需 skill
+</div>
+
+---
+
+# MCP 服务与实用工具
 
 <div class="grid grid-cols-2 gap-4 mt-4">
 
-<div v-click class="p-3 bg-gray-500/10 rounded">
+<div>
 
-### find-skills
-查找和管理 skills
-
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded">
-
-### opencode-antigravity-auth
-认证和权限管理
-
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded">
-
-### obra/superpowers
-增强能力集合
-
-</div>
-
-<div v-click class="p-3 bg-gray-500/10 rounded">
-
-### ralph-loop
-自动化循环执行任务
-
-</div>
-
- </div>
-
-<div class="mt-6">
-
-### MCP 服务推荐
+### <carbon-plug class="inline text-cyan-400"/> MCP 服务推荐
 
 <v-clicks>
 
-- **Playwright MCP**：浏览器自动化
-- **Context7**：文档查询服务
+<div class="p-2 bg-cyan-500/10 border border-cyan-500/30 rounded text-sm mt-2">
+
+**Playwright MCP** - 浏览器自动化测试、截图、表单填写
+
+</div>
+
+<div class="p-2 bg-cyan-500/10 border border-cyan-500/30 rounded text-sm mt-2">
+
+**Context7** - 实时查询框架/库官方文档
+
+</div>
+
+<div class="p-2 bg-cyan-500/10 border border-cyan-500/30 rounded text-sm mt-2">
+
+**GitHub MCP** - Issues、PR 管理、代码搜索
+
+</div>
 
 </v-clicks>
+
+</div>
+
+<div>
+
+### <carbon-tool-box class="inline text-yellow-400"/> 其他实用工具
+
+<v-clicks>
+
+<div class="p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm mt-2">
+
+**ralph-loop** - 自动化循环执行，直到任务完成
+
+</div>
+
+<div class="p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm mt-2">
+
+**opencode-antigravity-auth** - Google AI Studio 认证
+
+</div>
+
+<div class="p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-sm mt-2">
+
+**ultrawork 模式** - 完整多智能体协作关键词
+
+</div>
+
+</v-clicks>
+
+</div>
+
+</div>
+
+<div v-click class="mt-4 p-3 bg-gray-500/10 rounded-lg text-sm">
+
+### 📦 安装 MCP 示例
+
+```bash {lines:false}
+# 在 opencode 配置中添加 MCP
+opencode mcp add playwright-mcp -- npx @anthropic/mcp-playwright
+```
 
 </div>
 
@@ -757,18 +938,18 @@ flowchart TB
 
 <div class="mt-4">
 
-| 快捷键          | 功能说明                                                  |
-| --------------- | --------------------------------------------------------- |
-| `Ctrl + X, L`   | 切换会话（多会话处理，如同时开发前后端）                  |
+| 快捷键          | 功能说明                                                        |
+| --------------- | --------------------------------------------------------------- |
+| `Ctrl + X, L`   | 切换会话（多会话处理，如同时开发前后端）                        |
 | `Ctrl + T`      | 切换模型 Variant（Thinking 模式、GPT 的 low/medium/high/xhigh） |
-| `Ctrl + X, M`   | 切换模型                                                  |
-| `Ctrl + P`      | 打开命令面板                                              |
-| `Ctrl + X, ←/→` | 查看 Subagent                                             |
-| `Ctrl + Enter`  | 换行输入                                                  |
+| `Ctrl + X, M`   | 切换模型                                                        |
+| `Ctrl + P`      | 打开命令面板                                                    |
+| `Ctrl + X, ←/→` | 查看 Subagent                                                   |
+| `Ctrl + Enter`  | 换行输入                                                        |
 
 </div>
 
-<div v-click class="mt-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+<div v-click class="mt-3 p-1 bg-blue-500/10 border border-blue-500/30 rounded-lg">
 
 ### 💡 小技巧
 
