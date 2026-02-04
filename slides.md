@@ -15,6 +15,14 @@ colorSchema: dark
 fonts:
   sans: 'Noto Sans SC'
   mono: 'Fira Code'
+# 导出配置
+aspectRatio: 16/9
+canvasWidth: 980
+exportFilename: opencode-presentation
+export:
+  format: pdf
+  timeout: 60000
+  withClicks: false
 ---
 
 # OpenCode 介绍与实战
