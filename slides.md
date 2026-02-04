@@ -255,7 +255,7 @@ Stars on GitHub
 
 </div>
 
-<div class="mt-6 text-sm text-gray-500">截止 2025年2月</div>
+<div class="mt-6 text-sm text-gray-500">截止 2026年2月</div>
 
 ---
 transition: slide-up
