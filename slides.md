@@ -754,16 +754,19 @@ flowchart TB
 ```mermaid
 sequenceDiagram
     participant U as 用户
+    participant S as Sisyphus
     participant E as Explore
     participant O as Oracle
-    participant S as Sisyphus
     
-    U->>E: 生产环境报 500
-    E->>E: 定位代码
-    E-->>O: 上下文
-    O->>O: 分析根因
-    O-->>S: 修复方案
-    S->>S: 执行修复
+    U->>S: 提交 Bug
+    par 并行调研
+        S->>E: 搜索相关代码 & 模式
+        E-->>S: 返回代码上下文
+        S->>O: 咨询根因分析
+        O-->>S: 提供修复思路
+    end
+    S->>S: 综合信息 & 制定方案
+    S->>S: 执行修复 & 验证
     S-->>U: 修复完成
 ```
 
@@ -777,18 +780,31 @@ sequenceDiagram
 sequenceDiagram
     participant U as 用户
     participant P as Prometheus
-    participant H as Hephaestus
-    participant M as Momus
+    participant Me as Metis
+    participant Mo as Momus
+    participant A as Atlas
+    participant S as Sisyphus
     
-    U->>P: 添加 Stripe 支付
-    P->>P: 拆解任务
-    P-->>H: 子任务列表
-    loop 开发循环
-        H->>H: 编写代码
-        H->>M: 提交审查
-        M-->>H: 反馈意见
+    U->>P: 提需求
+    P->>P: 调研 & 规划
+    opt 复杂任务
+        P->>Me: 咨询架构/逻辑
+        Me-->>P: 专家建议
     end
-    H-->>U: 功能交付
+    
+    loop 规划审查迭代
+        P->>Mo: 提交规划书
+        alt 需修改
+            Mo-->>P: 驳回 & 审查意见
+            P->>P: 修改规划
+        else 通过
+            Mo-->>U: 规划通过
+        end
+    end
+    
+    U->>A: 运行 /start-work
+    A->>S: 任务调度 & 分发
+    S->>S: 执行具体开发任务
 ```
 
 </div>
